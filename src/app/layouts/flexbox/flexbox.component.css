@@ -1,0 +1,62 @@
+/* Add mobile styles for the component here.  */
+/* Add mobile styles for the component here.  */
+/* Add mobile styles for the component here.  */
+StackLayout {
+    border-color: green;
+    border-width: 5;
+    padding: 10;
+    height: 400;
+}
+
+FlexboxLayout {
+    border-color: green;
+    border-width: 5;
+    height: 300;
+}
+
+label {
+    width: 50;
+    height: 50;
+}
+
+#i1 {
+    background: red;
+    border-bottom-width: 1;
+    border-color: darkslategray;
+    padding: 12;
+}
+
+#i2 {
+    background: blue;
+    border-bottom-width: 1;
+    border-color: darkslategray;
+    color: white;
+    padding: 12;
+    text-align: center;
+}
+
+#i3 {
+    background: orange;
+    border-bottom-width: 1;
+    border-color: darkslategray;
+    padding: 12;
+}
+
+
+#i4 {
+    background: red;
+    border-bottom-width: 1;
+    border-color: darkslategray;
+}
+
+#i5 {
+    background: blue;
+    border-bottom-width: 1;
+    border-color: darkslategray;
+}
+
+#i6 {
+    background: orange;
+    border-bottom-width: 1;
+    border-color: darkslategray;
+}

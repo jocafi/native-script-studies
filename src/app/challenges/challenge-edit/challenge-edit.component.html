@@ -1,0 +1,13 @@
+<StackLayout>
+  <FlexboxLayout justifyContent="space-between">
+    <TextField
+        class="form-control"
+        hint="Challenge title"
+        [(ngModel)]="challengeDescription"
+    ></TextField>
+    <Button class="btn" (tap)="onSetChallenge()" text="Add Challenge"></Button>
+  </FlexboxLayout>
+  <ns-current-challenge
+      [challengeTitle]="activeChallenge"
+  ></ns-current-challenge>
+</StackLayout>

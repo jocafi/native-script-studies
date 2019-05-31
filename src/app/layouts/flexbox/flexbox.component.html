@@ -1,0 +1,52 @@
+
+  <!-- .JA. * The main axis for flex-direction "row" is left to right
+            * The main axis for flex-direction "column" is top to bottom
+            * The main axis for flex-direction "column-reverse" is bottom to top
+
+            * justifyContent="flex-start" is the default value
+            justifyContent="flex-end" pushes the elements to the end of the container
+            justifyContent="center" pushes the elements to the center of the container
+            justifyContent="space-between" distributes the elements in the container putting space among the elements
+            justifyContent="space-around" distributes the elements in the container putting equal spaces among all the elements
+
+            * alignItems depends on the flex-direction (CSS) attribute. If its value is "column", the cross axis means the horizontal axis, from left to right.
+            If its value is "row", the cross axis means the vertical axis, from top to bottom.
+
+            * alignItems="stretch" is the default value and stretches the elements across the cross axis
+            * alignItems="flex-start" set the elements on the start position of the cross axis using their original width
+            * alignItems="flex-end" set the elements on the end position of the cross axis using their original width
+            * alignItems="center" set the elements on the end position of the cross axis using their original width
+
+            *flexWrap can be used to shrink the elements, if the value is "noWrap" and the sum of the width of the elements is bigger than the width of the parent / container.
+            if the value is "wrap" and the sum of the width of the elements is bigger than the width of the parent / container,
+            the last element(s) will be set in the next line, if available.
+
+            * alignSelf can be used to change the behaviour of one of the elements to be different of the defined by the attribute alignItems
+
+
+            More Infos about CSS FlexBox can be found at:
+            https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox
+            https://academind.com/learn/css/understanding-css/flexbox-basics-container/
+
+          More Infos about Layouts at:
+          https://docs.nativescript.org/angular/ui/layouts/layout-containers
+  -->
+<FlexboxLayout flexDirection="row" justifyContent="space-around" alignItems="flex-start">
+  <Label id="i1" text="Item 1" horizontalAlignment="right"></Label>
+  <Label id="i2" text="Item 2" verticalAlignment="top"></Label>
+  <Label id="i3" text="Item 3" alignSelf="flex-end"></Label>
+  <!--<Button text="Flex Layout works!"-->
+          <!--class="btn btn-primary"-->
+          <!--verticalAlignment="bottom"-->
+          <!--horizontalAlignment="left"></Button>-->
+</FlexboxLayout>
+
+<!--<FlexboxLayout flexDirection="column-reverse">-->
+  <!--<Label id="i4" text="Item 1" horizontalAlignment="right"></Label>-->
+  <!--<Label id="i5" text="Item 2" verticalAlignment="top"></Label>-->
+  <!--<Label id="i6" text="Item 3"></Label>-->
+  <!--&lt;!&ndash;<Button text="Flex Layout works!"&ndash;&gt;-->
+  <!--&lt;!&ndash;class="btn btn-primary"&ndash;&gt;-->
+  <!--&lt;!&ndash;verticalAlignment="bottom"&ndash;&gt;-->
+  <!--&lt;!&ndash;horizontalAlignment="left"></Button>&ndash;&gt;-->
+<!--</FlexboxLayout>-->
