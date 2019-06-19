@@ -34,7 +34,7 @@ refer to http://docs.nativescript.org/ui/theme.
 
 
 .btn {
-    background: #7c012d;
+    background: #7c015d;
     border-width: 1;
     border-color: #7c015d;
     color: white;
@@ -50,4 +50,12 @@ refer to http://docs.nativescript.org/ui/theme.
     margin: 5 0;
     font-size: 20;
     padding: 8 4;
+}
+
+.drawer-container {
+    background: linear-gradient(140deg, #2b0c72, #5c3fa0);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20;
 }

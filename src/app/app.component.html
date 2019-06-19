@@ -1,2 +1,15 @@
-<!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->
-<page-router-outlet></page-router-outlet>
+<RadSideDrawer>
+  <FlexboxLayout tkDrawerContent class="drawer-container">
+    <Button
+      text="Logout"
+      class="btn"
+      nsRouterLink="/"
+      [clearHistory]="true"
+      (tap)="onLogout()"
+    ></Button>
+  </FlexboxLayout>
+  <StackLayout tkMainContent>
+    <!-- .JA. Changed to <page-router-outlet> instead of <router-outlet> in order the App can manage the pop / push of pages -->
+    <page-router-outlet></page-router-outlet>
+  </StackLayout>
+</RadSideDrawer>

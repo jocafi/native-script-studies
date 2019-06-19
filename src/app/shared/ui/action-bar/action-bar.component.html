@@ -1,0 +1,25 @@
+<ActionBar [title]="title" (loaded)="onLoadedActionBar()">
+  <NavigationButton
+    text="Back"
+    android.systemIcon="ic_menu_back"
+    *ngIf="canGoBack"
+    (tap)="onGoBack()"
+  ></NavigationButton>
+
+  <!-- .JA. in Android you can put an image inside the folders App_Resources/Android/src/main/res/drawable-XYZ
+       and use the attibute icon="res://<IMAGE_WITHOUT_EXTENSION>"  -->
+  <NavigationButton
+    *ngIf="android && hasMenu"
+    icon="res://menu_black"
+    (tap)="onToggleMenu()"
+  ></NavigationButton>
+  <ActionItem
+    *ngIf="!android && hasMenu"
+    ios.position="left"
+    (tap)="onToggleMenu()"
+  >
+    <Label text="MENU"></Label>
+  </ActionItem>
+  <!-- .JA. <ng-content> inside an <ActionBar> enables us to inject code / action bar items  that can be customized in other pages -->
+  <ng-content></ng-content>
+</ActionBar>

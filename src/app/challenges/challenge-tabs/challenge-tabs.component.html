@@ -1,0 +1,15 @@
+<!-- .JA. androidTabsPosition informs to put the TAB on another position
+   By default it is on TOP and above the ActionBar
+   -->
+<TabView
+  androidTabsPosition="bottom"
+  androidSelectedTabHighlightColor="#7c015d"
+  selectedTabTextColor="#7c015d"
+>
+  <StackLayout *tabItem="{ title: 'Today' }">
+    <page-router-outlet name="today"> </page-router-outlet>
+  </StackLayout>
+  <StackLayout *tabItem="{ title: 'Current Challenge' }">
+    <page-router-outlet name="currentChallenge"> </page-router-outlet>
+  </StackLayout>
+</TabView>

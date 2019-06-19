@@ -1,0 +1,16 @@
+<ns-action-bar
+  title="Login"
+  [showBackButton]="false"
+  [hasMenu]="false"
+></ns-action-bar>
+<StackLayout>
+  <!-- .JA. Use nsRouterLink instead of the normal Angular routerLink
+       here we use [clearHistory]="true" to avoid returning to this page again.
+  -->
+  <Button
+    text="Login"
+    class="btn btn-primary"
+    nsRouterLink="/challenges"
+    [clearHistory]="true"
+  ></Button>
+</StackLayout>
