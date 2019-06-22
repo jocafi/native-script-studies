@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DayModalComponent } from './challenges/day-modal/day-modal.component';
 import { SharedModule } from './shared/shared.module';
 import { ChallengeActionsModule } from '~/app/challenges/challenge-actions/challenge-actions.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -22,6 +23,7 @@ import { ChallengeActionsModule } from '~/app/challenges/challenge-actions/chall
     NativeScriptModule,
     NativeScriptFormsModule,
     NativeScriptUISideDrawerModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     SharedModule,
     ChallengeActionsModule

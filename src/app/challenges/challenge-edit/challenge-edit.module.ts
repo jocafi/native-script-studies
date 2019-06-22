@@ -4,13 +4,15 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router';
 
 import { ChallengeEditComponent } from './challenge-edit.component';
 import { SharedModule } from '~/app/shared/shared.module';
+import { NativeScriptFormsModule } from 'nativescript-angular';
 
 @NgModule({
   declarations: [ChallengeEditComponent],
   imports: [
     NativeScriptCommonModule,
-      // .JA. The module NativeScriptRouterModule must be imported twice, if any component is using routing services / classes
-      // because the ".forChild" does not import them.
+    NativeScriptFormsModule,
+    // .JA. The module NativeScriptRouterModule must be imported twice, if any component is using routing services / classes
+    // because the ".forChild" does not import them.
     // NativeScriptRouterModule,
     NativeScriptRouterModule.forChild([
       { path: '', component: ChallengeEditComponent }
@@ -18,4 +20,5 @@ import { SharedModule } from '~/app/shared/shared.module';
     SharedModule
   ]
 })
-export class ChallengeEditModule {}
+export class ChallengeEditModule {
+}

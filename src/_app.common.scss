@@ -29,10 +29,21 @@ ActionBar {
       font-family: 'Oswald', 'Oswald-Regular', 'Oswald-Bold';
     }
 
+    .label.invalid {
+      color: red;
+    }
+
     .input {
       border-bottom-width: 2;
-      border-color: $primary;
+      border-bottom-color: $primary;
       width: 100%;
+      color: black;
+    }
+
+    // .JA. if the component is invalid and was touched, Angular will use this style
+    .input.ng-invalid.ng-touched {
+      border-bottom-color: red;
+      color: red;
     }
   }
 }
