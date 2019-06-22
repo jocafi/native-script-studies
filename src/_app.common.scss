@@ -1,6 +1,7 @@
 /* @import '~nativescript-theme-core/css/core.light.css'; */
 @import '~nativescript-theme-core/scss/light';
 
+// .JA. you can overwrite the default color variables after importing the theme
 @import './theme/colors';
 
 $btn-color: $primary;
@@ -72,6 +73,10 @@ ActionBar {
   background: transparent;
   border-color: transparent;
   border-width: 1;
+  color: $primary;
+}
+
+.primary {
   color: $primary;
 }
 

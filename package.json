@@ -38,6 +38,9 @@
         "nativescript-dev-webpack": "^0.24.1",
         "typescript": "^3.4.5"
     },
+    "scripts": {
+        "clean_ns": "./clean_ns.sh"
+    },
     "gitHead": "59b6da006346fedb5bb201fcc9cd7d204a69a82f",
     "readme": "NativeScript Application"
 }
