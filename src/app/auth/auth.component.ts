@@ -43,6 +43,9 @@ export class AuthComponent implements OnInit {
     this.form.get('password').statusChanges.subscribe(status => {
       this.passwordControlIsValid = status === 'VALID';
     });
+
+    this.form.get('email').setValue('jocafi@test.com');
+    this.form.get('password').setValue('secret');
   }
 
   onSignin() {

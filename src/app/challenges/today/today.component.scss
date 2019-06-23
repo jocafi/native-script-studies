@@ -1,8 +1,14 @@
 // .JA. use of image as background image
-GridLayout {
+.page {
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
    background-image: url('res://climb');
    background-repeat: no-repeat;
    background-position: center;
    background-size: cover;
 }
 
+.create-one {
+   width: 200;
+}

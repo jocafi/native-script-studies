@@ -1,19 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+import { ChallengeService } from '../challenge.service';
+import { Day, DayStatus } from '../day.model';
 
 @Component({
   selector: 'ns-today',
   templateUrl: './today.component.html',
   styleUrls: ['./today.component.scss'],
-  moduleId: module.id,
+  moduleId: module.id
 })
-export class TodayComponent implements OnInit {
+export class TodayComponent implements OnInit, OnDestroy {
+  currentDay: Day;
+  private curChallengeSub: Subscription;
 
-  constructor() { }
+  constructor(private challengeService: ChallengeService) {}
 
   ngOnInit() {
+    this.curChallengeSub = this.challengeService.currentChallenge.subscribe(
+        challenge => {
+          if (challenge) {
+            this.currentDay = challenge.currentDay;
+          }
+        }
+    );
   }
 
-  onActionSelected(action: 'complete' | 'fail' | 'cancel') {
-    console.log(action);
+  onActionSelected(action: DayStatus) {
+    this.challengeService.updateDayStatus(this.currentDay.dayInMonth, action);
+  }
+
+  getActionName() {
+    if (this.currentDay.status === DayStatus.Completed) {
+      return 'complete';
+    }
+    if (this.currentDay.status === DayStatus.Failed) {
+      return 'fail';
+    }
+    return null;
+  }
+
+  ngOnDestroy() {
+    if (this.curChallengeSub) {
+      this.curChallengeSub.unsubscribe();
+    }
   }
 }

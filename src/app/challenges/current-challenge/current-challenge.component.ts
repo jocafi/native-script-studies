@@ -4,6 +4,10 @@ import { ModalDialogService } from 'nativescript-angular/modal-dialog';
 import { DayModalComponent } from '../day-modal/day-modal.component';
 import { UIService } from '~/app/shared/ui.service';
 import { RouterExtensions } from 'nativescript-angular';
+import { ChallengeService } from '~/app/challenges/challenge.service';
+import { Subscription } from 'rxjs';
+import { Challenge } from '~/app/challenges/challenge.model';
+import { Day, DayStatus } from '~/app/challenges/day.model';
 
 @Component({
   selector: 'ns-current-challenge',
@@ -18,41 +22,37 @@ export class CurrentChallengeComponent implements OnInit {
 
   weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   days: { dayInMonth: number; dayInWeek: number }[] = [];
-  private currentMonth: number;
-  private currentYear: number;
+  currentChallenge: Challenge;
+  private curChallengeSub: Subscription;
 
 
   constructor(
-    private modalDialog: ModalDialogService,
-    private vcRef: ViewContainerRef,
-    private uiService: UIService,
-    private router: RouterExtensions
-  ) {}
-
-  ngOnInit() {
-    this.currentYear = new Date().getFullYear();
-    this.currentMonth = new Date().getMonth();
-    // .JA. JS: when date = 0, it gets the last day of the PREVIOUS month
-    const daysInMonth = new Date(
-        this.currentYear,
-        this.currentMonth + 1,
-        0
-    ).getDate();
-
-    for (let i = 1; i < daysInMonth + 1; i++) {
-      const date = new Date(this.currentYear, this.currentMonth, i);
-      const dayInWeek = date.getDay();
-      this.days.push({ dayInMonth: i, dayInWeek: dayInWeek });
-    }
+      private modalDialog: ModalDialogService,
+      private vcRef: ViewContainerRef,
+      private uiService: UIService,
+      private router: RouterExtensions,
+      private challengeService: ChallengeService
+  ) {
   }
 
+  ngOnInit() {
+    this.curChallengeSub = this.challengeService.currentChallenge.subscribe(
+        challenge => {
+          this.currentChallenge = challenge;
+        }
+    );
+  }
+
+  getIsSettable(dayInMonth: number) {
+    return dayInMonth <= new Date().getDate();
+  }
 
   getRow(index: number, day: { dayInMonth: number; dayInWeek: number }) {
     const startRow = 1;
     const weekRow = Math.floor(index / 7);
     const firstWeekDayOfMonth = new Date(
-        this.currentYear,
-        this.currentMonth,
+        new Date().getFullYear(),
+        new Date().getMonth(),
         1
     ).getDay();
     const irregularRow = day.dayInWeek < firstWeekDayOfMonth ? 1 : 0;
@@ -60,25 +60,37 @@ export class CurrentChallengeComponent implements OnInit {
     return startRow + weekRow + irregularRow;
   }
 
-  onChangeStatus() {
+  onChangeStatus(day: Day) {
+    if (!this.getIsSettable(day.dayInMonth)) {
+      return;
+    }
     // .JA. to open a modal dialog, you need to specify the reference of the parent container (the page that is opening the dialog) = this.vcRef.
     // the context attribute allows you to pass data to the modal dialog
     // more info at https://docs.nativescript.org/core-concepts/navigation#modal-view-navigation
     this.modalDialog
-      .showModal(DayModalComponent, {
-        fullscreen: true,
-        viewContainerRef: this.uiService.getRootVCRef()
-          ? this.uiService.getRootVCRef()
-          : this.vcRef,
-        context: { date: new Date() }
-      })
-      .then((action: string) => {
+        .showModal(DayModalComponent, {
+          fullscreen: true,
+          viewContainerRef: this.uiService.getRootVCRef()
+              ? this.uiService.getRootVCRef()
+              : this.vcRef,
+          context: { date: day.date, status: day.status }
+        })
         // .JA. here is the data that was sent by the modal dialog when the user closed it
-        console.log(action);
-      });
+        .then((status: DayStatus) => {
+          if (status === DayStatus.Open) {
+            return;
+          }
+          this.challengeService.updateDayStatus(day.dayInMonth, status);
+        });
   }
 
   navigateToEdit() {
     this.router.navigate(['/challenges/new']);
+  }
+
+  ngOnDestroy() {
+    if (this.curChallengeSub) {
+      this.curChallengeSub.unsubscribe();
+    }
   }
 }
